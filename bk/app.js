@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./Routes/authRoutes');
 const atdRoutes = require('./Routes/attendanceRoutes');
+const ttRoutes = require("./Routes/timetable");
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -16,7 +17,7 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use('/api', authRoutes, atdRoutes);
+app.use('/api', authRoutes, atdRoutes,ttRoutes);
 
 mongoose.connect('mongodb+srv://naveen:95144@cluster0.ij3t1.mongodb.net/')
   .then(() => {
