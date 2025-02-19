@@ -27,11 +27,11 @@ exports.submitRequest = async(req, res) =>{
 
  exports.getLeaveRequests = async (req, res) =>{
     try {
-        const res = await LeaveRequestModel.find().populate("rollNo", "classRoom");
-        if(!res || res.length === 0){
+        const request = await LeaveRequestModel.find().populate("rollNo");
+        if(!request || request.length === 0){
             return res.status(404).json({ success: false, message: "No leave requests found"})
         }
-        res.status(200).json({ success: true, data: res })
+        res.status(200).json({ success: true, data: Request })
 
         
     } catch (error) {
@@ -45,7 +45,7 @@ exports.submitRequest = async(req, res) =>{
         return res.status(400).json({ success: false, message: "Invalid status"})
     }
     try {
-        const request = await LeaveRequestModel.findByIdAndUpdate(
+        const request = await LeaveRequestModel.findOneAndUpdate(
             req.params.rollNo,
             {status, updatedAt: Date.now()},
             {new: true}
@@ -59,7 +59,7 @@ exports.submitRequest = async(req, res) =>{
         res.status(200).json({ success: true, message: "Leave request updated successfully"})
 
     } catch (error) {
-         res.status(500).json({ success: false, message: "Error updating leave request"
+         res.status(500).json({ success: false, message: "Error updating leave request"})
     }
  }
 
