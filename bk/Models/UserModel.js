@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         type : String
     },
 
-    className : {
+    classRoom : {
         type : String,
         trim : true
     },

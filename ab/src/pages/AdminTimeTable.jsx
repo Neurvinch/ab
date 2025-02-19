@@ -5,6 +5,7 @@ const TeacherTimetable = () => {
   const [timetable, setTimetable] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
   // States for editing an existing entry
   const [editingEntry, setEditingEntry] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -13,6 +14,7 @@ const TeacherTimetable = () => {
     classRoom: '',
     subject: ''
   });
+  
   // States for creating a new entry
   const [createMode, setCreateMode] = useState(false);
   const [newEntry, setNewEntry] = useState({
@@ -22,9 +24,28 @@ const TeacherTimetable = () => {
     subject: ''
   });
 
+  // Fetch timetable data on component mount
+  useEffect(() => {
+    fetchTimetable();
+  }, []);
 
+  const fetchTimetable = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get('http://localhost:5000/api/getTimeTable', { withCredentials: true });
+      if (res.data.success) {
+        setTimetable(res.data.data);
+      } else {
+        setError('Failed to fetch timetable');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Error fetching timetable');
+    }
+    setLoading(false);
+  };
 
-
+  // When editing, populate the form with the selected entry's data
   const handleEditClick = (entry) => {
     setEditingEntry(entry._id);
     setEditForm({
@@ -35,21 +56,20 @@ const TeacherTimetable = () => {
     });
   };
 
+  // Handle changes in the edit form
   const handleEditChange = (field, value) => {
     setEditForm({ ...editForm, [field]: value });
   };
 
+  // Submit updated timetable entry
   const handleUpdate = async () => {
     try {
       const token = localStorage.getItem('token');
-      // In this example, the update endpoint uses a PUT without ID.
-      // If your update endpoint requires an ID, consider using an endpoint like `/api/updateTimetable/:id`
+      // Note: Adjust the update endpoint as needed.
+      // For example, if your endpoint requires an ID, consider using `/api/updateTimetable/:id`
       const res = await axios.put(
         'http://localhost:5000/api/updateTimetable',
-        {
-          ...editForm,
-          // You may include an identifier if your endpoint needs it
-        },
+        { ...editForm },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,7 +80,7 @@ const TeacherTimetable = () => {
       if (res.data.success) {
         alert('Timetable updated successfully');
         setEditingEntry(null);
-        
+        fetchTimetable(); // Refresh the timetable data
       } else {
         alert('Failed to update timetable');
       }
@@ -70,6 +90,7 @@ const TeacherTimetable = () => {
     }
   };
 
+  // Create a new timetable entry
   const handleCreate = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -87,13 +108,8 @@ const TeacherTimetable = () => {
       if (res.data.success) {
         alert('Timetable entry created successfully');
         setCreateMode(false);
-        setNewEntry({
-          day: '',
-          period: '',
-          classRoom: '',
-          subject: ''
-        });
-        
+        setNewEntry({ day: '', period: '', classRoom: '', subject: '' });
+        fetchTimetable(); // Refresh the timetable data
       } else {
         alert('Failed to create timetable entry');
       }

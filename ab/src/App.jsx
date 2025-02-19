@@ -4,6 +4,7 @@ import Register from './pages/register.jsx'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Adtt from "./pages/AdminTimeTable.jsx"
+import Profile from './pages/Profile.jsx'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route  path='/login' element = {<Login/>}    />
       <Route  path='/dashboard' element={ <Dashboard/>}    />
       <Route path='/timetable' element = { <Adtt/>} />
+      <Route  path='/profile' element = {<Profile/>}  />
   </Routes>
     </Router>
 
