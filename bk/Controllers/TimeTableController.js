@@ -38,7 +38,7 @@ exports.createTimeTable = async(req,res) =>{
         });
 
          await timetable.save();
-         res.status(400).json( timetable);
+         res.status(201).json( timetable);
         
      } catch (error) {
        
@@ -51,7 +51,7 @@ exports.updateTimeTable = async(req , res) =>{
     const {day , period , classRoom , subject} = req.body ;
 
     try { 
-        const timetable = await TimeTableModel.findAndUpdate({
+        const timetable = await TimeTableModel.findOneAndUpdate({
             classRoom : classRoom,
             day : day ,
              period : period,
@@ -66,7 +66,7 @@ exports.updateTimeTable = async(req , res) =>{
             message : "TimeTable not found",
         })
       }
-      res.status(200).json({
+      res.status(201).json({
         success : true ,
         message : "TimeTable updated",
       })
