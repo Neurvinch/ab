@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import'./Profile.css'
 const Profile = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
@@ -98,51 +98,59 @@ const Profile = () => {
     if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
     return (
-        <div>
-            <h1>Profile</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+        <div className="profile-container">
+  <h1>Profile</h1>
+  <form onSubmit={handleSubmit} className="profile-form">
+    <div className="profile-field">
+      <label className="profile-label">Email:</label>
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+        className="profile-input"
+      />
+    </div>
 
-                <div>
-                    <label>Role:</label>
-                    <input
-                        type="text"
-                        name="roles"
-                        value={formData.roles}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Department:</label>
-                    <input
-                        type="text"
-                        name="department"
-                        value={formData.department}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Class Room:</label>
-                    <input
-                        type="text"
-                        name="classRoom"
-                        value={formData.classRoom}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit">Update Profile</button>
-            </form>
-        </div>
+    <div className="profile-field">
+      <label className="profile-label">Role:</label>
+      <input
+        type="text"
+        name="roles"
+        value={formData.roles}
+        onChange={handleChange}
+        required
+        className="profile-input"
+      />
+    </div>
+
+    <div className="profile-field">
+      <label className="profile-label">Department:</label>
+      <input
+        type="text"
+        name="department"
+        value={formData.department}
+        onChange={handleChange}
+        className="profile-input"
+      />
+    </div>
+
+    <div className="profile-field">
+      <label className="profile-label">Class Room:</label>
+      <input
+        type="text"
+        name="classRoom"
+        value={formData.classRoom}
+        onChange={handleChange}
+        className="profile-input"
+      />
+    </div>
+
+    <button type="submit" className="profile-button">Update Profile</button>
+  </form>
+</div>
+
     );
 };
 

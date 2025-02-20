@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import'./InternalMarks.css'
 const StudentInternalMarks = () => {
   const [marks, setMarks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,24 +33,25 @@ const StudentInternalMarks = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Your Internal Marks</h1>
-      {loading ? (
-        <p>Loading internal marks...</p>
-      ) : error ? (
-        <p style={{ color: 'red' }}>{error}</p>
-      ) : marks.length === 0 ? (
-        <p>No internal marks found.</p>
-      ) : (
-        marks.map((mark) => (
-          <div key={mark._id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}>
-            <p><strong>Subject:</strong> {mark.subject}</p>
-            <p><strong>Marks:</strong> {mark.marks}</p>
-            <p><strong>Exam Date:</strong> {new Date(mark.examDate).toLocaleDateString()}</p>
-          </div>
-        ))
-      )}
-    </div>
+    <div className="internal-marks-container">
+  <h1>Your Internal Marks</h1>
+  {loading ? (
+    <p className="internal-loading">Loading internal marks...</p>
+  ) : error ? (
+    <p className="internal-error">{error}</p>
+  ) : marks.length === 0 ? (
+    <p className="internal-empty">No internal marks found.</p>
+  ) : (
+    marks.map((mark) => (
+      <div key={mark._id} className="internal-marks-card">
+        <p><strong>Subject:</strong> {mark.subject}</p>
+        <p><strong>Marks:</strong> {mark.marks}</p>
+        <p><strong>Exam Date:</strong> {new Date(mark.examDate).toLocaleDateString()}</p>
+      </div>
+    ))
+  )}
+</div>
+
   );
 };
 

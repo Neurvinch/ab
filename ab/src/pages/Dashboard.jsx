@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import './Dashboard.css';
+
 
 const Dashboard = () => {
   const [userRole, setUserRole] = useState('');
@@ -153,125 +155,114 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Logged in as: {userRole}</p>
+    <div className="dashboard-container">
 
-      {/* For students and HOD: Show attendance records */}
-      {(userRole === 'student' || userRole === 'hod') && (
-        <div>
-          <h2>Attendance Records</h2>
-          {loading ? (
-            <p>Loading attendance...</p>
-          ) : attendanceRecords.length === 0 ? (
-            <p>No attendance records found.</p>
-          ) : (
-            <table border="1" cellPadding="5">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Status</th>
-                  {userRole === 'hod' && <th>Actions</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {attendanceRecords.map((record) => (
-                  <tr key={record._id}>
-                    <td>{new Date(record.attendanceDate).toLocaleDateString()}</td>
-                    <td>
-                      {editingRecordId === record._id ? (
-                        <input
-                          type="text"
-                          value={newStatus}
-                          onChange={(e) => setNewStatus(e.target.value)}
-                        />
-                      ) : (
-                        record.status
-                      )}
-                    </td>
-                    {userRole === 'hod' && (
-                      <td>
-                        {editingRecordId === record._id ? (
-                          <button onClick={() => handleUpdateAttendance(record._id)}>
-                            Save
-                          </button>
+            {/* Right Side - Dashboard Content */}
+            <main className="dashboard-content">
+                <h1>Dashboard</h1>
+                <p>Logged in as: {userRole}</p>
+
+                {/* Attendance Records for Student & HOD */}
+                {(userRole === 'student' || userRole === 'hod') && (
+                    <div>
+                        <h2>Attendance Records</h2>
+                        {attendanceRecords.length === 0 ? (
+                            <p>No attendance records found.</p>
                         ) : (
-                          <button
-                            onClick={() => {
-                              setEditingRecordId(record._id);
-                              setNewStatus(record.status);
-                            }}
-                          >
-                            Edit
-                          </button>
+                            <table className="attendance-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        {userRole === 'hod' && <th>Actions</th>}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {attendanceRecords.map((record) => (
+                                        <tr key={record._id}>
+                                            <td>{new Date(record.attendanceDate).toLocaleDateString()}</td>
+                                            <td>
+                                                {editingRecordId === record._id ? (
+                                                    <input
+                                                        type="text"
+                                                        value={newStatus}
+                                                        onChange={(e) => setNewStatus(e.target.value)}
+                                                    />
+                                                ) : (
+                                                    record.status
+                                                )}
+                                            </td>
+                                            {userRole === 'hod' && (
+                                                <td>
+                                                    {editingRecordId === record._id ? (
+                                                        <button className="blue-btn" onClick={() => handleUpdateAttendance(record._id)}>
+                                                            Save
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            className="blue-btn"
+                                                            onClick={() => {
+                                                                setEditingRecordId(record._id);
+                                                                setNewStatus(record.status);
+                                                            }}
+                                                        >
+                                                            Edit
+                                                        </button>
+                                                    )}
+                                                </td>
+                                            )}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         )}
-                      </td>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      )}
+                    </div>
+                )}
 
-      {/* For staff: Multiple-student form to mark attendance */}
-      {userRole === 'staff' && (
-        <div>
-          <h2>Mark Attendance</h2>
-          {markError && <div style={{ color: 'red' }}>{markError}</div>}
-          {markSuccess && <div style={{ color: 'green' }}>{markSuccess}</div>}
-          <form onSubmit={handleMultipleMarkAttendance}>
-            <div>
-              <label>Date: </label>
-              <input
-                type="date"
-                value={markDate}
-                onChange={(e) => setMarkDate(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <h3>Students</h3>
-              {students.map((student, index) => (
-                <div key={index} style={{ marginBottom: '10px' }}>
-                  <input
-                    type="text"
-                    placeholder="Roll No"
-                    value={student.rollNo}
-                    onChange={(e) =>
-                      handleStudentChange(index, 'rollNo', e.target.value)
-                    }
-                    required
-                  />
-                  <select
-                    value={student.status}
-                    onChange={(e) =>
-                      handleStudentChange(index, 'status', e.target.value)
-                    }
-                    required
-                  >
-                    <option value="Present">Present</option>
-                    <option value="absent">Absent</option>
-                  </select>
-                  {students.length > 1 && (
-                    <button type="button" onClick={() => removeStudentField(index)}>
-                      Remove
-                    </button>
-                  )}
-                </div>
-              ))}
-              <button type="button" onClick={addStudentField}>
-                Add Another Student
-              </button>
-            </div>
-            <button type="submit">Mark Attendance</button>
-          </form>
-        </div>
-      )}
+                {/* Staff Attendance Form */}
+                {userRole === 'staff' && (
+                    <div>
+                        <h2>Mark Attendance</h2>
+                        {markSuccess && <div className="success-message">{markSuccess}</div>}
+                        <form onSubmit={handleMultipleMarkAttendance}>
+                            <div>
+                                <label>Date: </label>
+                                <input type="date" value={markDate} onChange={(e) => setMarkDate(e.target.value)} required />
+                            </div>
+                            <div>
+                                <h3>Students</h3>
+                                {students.map((student, index) => (
+                                    <div key={index} className="student-row">
+                                        <input
+                                            type="text"
+                                            placeholder="Roll No"
+                                            value={student.rollNo}
+                                            onChange={(e) => handleStudentChange(index, 'rollNo', e.target.value)}
+                                            required
+                                        />
+                                        <select value={student.status} onChange={(e) => handleStudentChange(index, 'status', e.target.value)} required>
+                                            <option value="Present">Present</option>
+                                            <option value="Absent">Absent</option>
+                                        </select>
+                                        {students.length > 1 && (
+                                            <button type="button" className="remove-btn" onClick={() => removeStudentField(index)}>
+                                                Remove
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+                                <button type="button" className="blue-btn" onClick={addStudentField}>
+                                    Add Another Student
+                                </button>
+                            </div>
+                            <button type="submit" className="blue-btn">Mark Attendance</button>
+                        </form>
+                    </div>
+                )}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+                {error && <p className="error-message">{error}</p>}
+            </main>
+        </div>
   );
 };
 

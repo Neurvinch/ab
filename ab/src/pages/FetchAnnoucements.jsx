@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import './FetchAnno.css'
 const FetchAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,26 +33,27 @@ const FetchAnnouncements = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Announcements</h1>
-      {loading ? (
-        <p>Loading announcements...</p>
-      ) : error ? (
-        <p style={{ color: 'red' }}>{error}</p>
-      ) : announcements.length === 0 ? (
-        <p>No announcements available.</p>
-      ) : (
-        announcements.map((announcement) => (
-          <div key={announcement._id} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-            <h2>{announcement.title}</h2>
-            <p>{announcement.content}</p>
-            <p style={{ fontSize: '0.8em' }}>
-              Posted on: {new Date(announcement.createdAt).toLocaleDateString()}
-            </p>
-          </div>
-        ))
-      )}
-    </div>
+    <div className="announcements-container">
+  <h1>Announcements</h1>
+  {loading ? (
+    <p>Loading announcements...</p>
+  ) : error ? (
+    <p style={{ color: 'red' }}>{error}</p>
+  ) : announcements.length === 0 ? (
+    <p>No announcements available.</p>
+  ) : (
+    announcements.map((announcement) => (
+      <div key={announcement._id} className="announcement-box">
+        <h2>{announcement.title}</h2>
+        <p>{announcement.content}</p>
+        <p className="announcement-date">
+          Posted on: {new Date(announcement.createdAt).toLocaleDateString()}
+        </p>
+      </div>
+    ))
+  )}
+</div>
+
   );
 };
 

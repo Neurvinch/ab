@@ -1,0 +1,67 @@
+.internal-marks-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0d1b2a; /* Dark Blue Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .internal-marks-container h1 {
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  .internal-loading,
+  .internal-error,
+  .internal-empty {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .internal-error {
+    color: red;
+  }
+  
+  .internal-empty {
+    color: #ffffff;
+  }
+  
+  .internal-marks-card {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #0062b1;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .internal-marks-card p {
+    color: #000000;
+    margin: 5px 0;
+    font-size: 0.95em;
+  }
+  
+  .internal-marks-card strong {
+    color: #000000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .internal-marks-container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .internal-marks-card {
+      padding: 10px;
+    }
+  
+    .internal-marks-card p {
+      font-size: 0.9em;
+    }
+  }
+  

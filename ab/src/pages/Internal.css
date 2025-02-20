@@ -1,0 +1,114 @@
+.marks-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0d1b2a; /* Dark Blue Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .marks-container h1 {
+    color: #0d47a1;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .message-success {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .message-error {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .marks-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .marks-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: white;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  
+  .marks-label {
+    font-weight: bold;
+    color: #1565c0;
+    font-size: 0.9em;
+    text-align: left;
+  }
+  
+  .marks-input {
+    padding: 6px;
+    border: 1px solid #64b5f6;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+  }
+  
+  .marks-input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 4px rgba(25, 118, 210, 0.4);
+  }
+  
+  .marks-button {
+    background-color: #1976d2;
+    color: white;
+    padding: 8px;
+    font-size: 0.9em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+  
+  .marks-button:hover {
+    background-color: #0d47a1;
+  }
+  
+  .remove-button {
+    background-color: #d32f2f;
+    color: white;
+    padding: 6px;
+    font-size: 0.8em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 5px;
+  }
+  
+  .remove-button:hover {
+    background-color: #b71c1c;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .marks-container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .marks-input {
+      font-size: 0.85em;
+      padding: 5px;
+    }
+  
+    .marks-button {
+      font-size: 0.85em;
+      padding: 7px;
+    }
+  }
+  

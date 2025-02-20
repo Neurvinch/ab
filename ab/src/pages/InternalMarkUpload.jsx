@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
  import axios from 'axios';
-
+import './Internal.css'
 const InternalMarkUpload = () => {
     const [marksData, setMarksData] = useState([{ rollNo: '', subject: '', marks: '' }]);
     const [message, setMessage] = useState('');
@@ -53,44 +53,52 @@ const InternalMarkUpload = () => {
     }
   
     return (
-    <div>
+      <div className="marks-container">
       <h1>Upload Internal Marks</h1>
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      {message && <p className="message-success">{message}</p>}
+      {error && <p className="message-error">{error}</p>}
+      <form onSubmit={handleSubmit} className="marks-form">
         {marksData.map((item, index) => (
-          <div key={index} style={{ marginBottom: '10px', border: '1px solid #ccc', padding: '10px' }}>
-            <label>Roll No:</label>
+          <div key={index} className="marks-row">
+            <label className="marks-label">Roll No:</label>
             <input
               type="text"
               value={item.rollNo}
               onChange={(e) => handleChange(index, 'rollNo', e.target.value)}
               required
+              className="marks-input"
             />
-            <label>Subject:</label>
+    
+            <label className="marks-label">Subject:</label>
             <input
               type="text"
               value={item.subject}
               onChange={(e) => handleChange(index, 'subject', e.target.value)}
               required
+              className="marks-input"
             />
-            <label>Marks:</label>
+    
+            <label className="marks-label">Marks:</label>
             <input
               type="number"
               value={item.marks}
               onChange={(e) => handleChange(index, 'marks', e.target.value)}
               required
+              className="marks-input"
             />
+    
             {marksData.length > 1 && (
-              <button type="button" onClick={() => removeRow(index)}>Remove</button>
+              <button type="button" className="remove-button" onClick={() => removeRow(index)}>Remove</button>
             )}
           </div>
         ))}
-        <button type="button" onClick={addRow}>Add Row</button>
+    
+        <button type="button" className="marks-button" onClick={addRow}>Add Row</button>
         <br />
-        <button type="submit">Upload Marks</button>
+        <button type="submit" className="marks-button">Upload Marks</button>
       </form>
     </div>
+    
   )
 }
 

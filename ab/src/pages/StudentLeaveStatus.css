@@ -1,0 +1,77 @@
+.leave-requests-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0d1b2a; /* Dark Blue Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .leave-requests-container h1 {
+    color: #f4f4f4;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+  
+  .leave-empty-message {
+    font-size: 1.1em;
+    color: #fbfbfb;
+    font-weight: bold;
+  }
+  
+  .leave-request-card {
+    background-color: white;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .leave-request-card p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #000000;
+  }
+  
+  .leave-request-card strong {
+    color: #535252;
+  }
+  
+  /* Status Styling */
+  .leave-status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+  
+  .leave-status.approved {
+    color: green;
+  }
+  
+  .leave-status.rejected {
+    color: red;
+  }
+  
+  .leave-status.pending {
+    color: orange;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .leave-requests-container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .leave-request-card {
+      padding: 10px;
+    }
+  
+    .leave-request-card p {
+      font-size: 0.9em;
+    }
+  }
+  

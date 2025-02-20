@@ -1,0 +1,83 @@
+.leave-request-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0d1b2a; /* Dark Blue Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .leave-request-container h1 {
+    color: #ffffff;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+  
+  .leave-request-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .leave-request-container input,
+  .leave-request-container select,
+  .leave-request-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #90caf9;
+    background: #1b263b; /* Slightly lighter dark blue */
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  .leave-request-container textarea {
+    height: 120px; /* Bigger text box */
+    resize: vertical;
+    overflow-y: auto; /* Scrolling enabled */
+  }
+  
+  .leave-request-container button {
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .leave-request-container button:hover {
+    background-color: #1565c0;
+  }
+  
+  .leave-request-container a {
+    display: block;
+    margin-top: 15px;
+    color: #64b5f6;
+    font-size: 1em;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .leave-request-container a:hover {
+    color: #90caf9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .leave-request-container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .leave-request-container input,
+    .leave-request-container select,
+    .leave-request-container textarea {
+      font-size: 0.9em;
+    }
+  }
+  
