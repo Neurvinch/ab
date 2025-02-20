@@ -7,6 +7,7 @@ import Adtt from "./pages/AdminTimeTable.jsx"
 import Profile from './pages/Profile.jsx'
 import StudentLeaveRequest from './pages/StudentLeaveRequest.jsx'
 import LeaveApproval from './pages/LeaveApproval.jsx'
+import StudentLeaveStatus from './pages/StudentLeaveStatus.jsx'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route  path='/profile' element = {<Profile/>}  />
       <Route  path='/leaveRequest' element = {<StudentLeaveRequest/>}  />
       <Route  path='/leaveRequestAdmin' element = {<LeaveApproval/>}  />
+      <Route  path='/leaveStatus'  element = {<StudentLeaveStatus/>}       />
   </Routes>
     </Router>
 

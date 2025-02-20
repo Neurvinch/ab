@@ -73,6 +73,7 @@ const StudentLeaveRequest = () => {
         </div>
         <button type="submit">Submit Request</button>
         </form>
+        <a href='/leaveStatus'>Know your Status </a>
     </div>
   )
 }

@@ -5,6 +5,7 @@ const atdRoutes = require('./Routes/attendanceRoutes');
 const ttRoutes = require("./Routes/timetable");
 const profile = require("./Routes/ProfileRoutes")
 const LR = require("./Routes/LeaveReqRoutes")
+
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 

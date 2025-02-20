@@ -8,6 +8,10 @@ router.post('/leaveRequest', identifer(["student"]), LeaveController.submitReque
 
 router.get("/leaveRequestadmin", identifer(["staff" , "hod"]) , LeaveController.getLeaveRequests);
 
-router.patch("/leaverequest/:rollNo", identifer(["hod"]), LeaveController.updateLeavceRequest);
+router.patch("/leaverequest/:rollNo", identifer(["staff" , "hod"]), LeaveController.updateLeaveRequest);
+
+// For students to view their own leave requests:
+router.get("/leaveRequest/student", identifer(['student']), LeaveController.getStudentLeaveRequests);
+
 
 module.exports = router;
