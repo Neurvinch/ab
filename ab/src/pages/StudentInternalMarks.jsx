@@ -10,18 +10,20 @@ const StudentInternalMarks = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
+      console.log("Fetching marks with token:", token);
       const res = await axios.get("http://localhost:5000/api/internal-marks/student", {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });
+      console.log("Response from internal marks endpoint:", res.data);
       if (res.data.success) {
         setMarks(res.data.data || []);
       } else {
-        setError(res.data.message);
+        setError(res.data.message || "Unknown error occurred.");
       }
     } catch (err) {
       console.error("Error fetching internal marks:", err);
-      setError(err.message);
+      setError(err.response?.data?.message || err.message);
     }
     setLoading(false);
   };
