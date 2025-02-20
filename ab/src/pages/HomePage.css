@@ -1,0 +1,147 @@
+/* General Styles */
+body {
+  background-color: #1a202c;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  color: white;
+  position: relative;
+}
+
+header img {
+  height: 64px;
+}
+
+/* Navigation Styles */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+nav button, nav a {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+nav a {
+  display: flex;
+  align-items: end;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  background:transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Main Content */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 80px;
+  gap: 50px;
+}
+
+/* Image Styling */
+.main-image {
+  width: 45%;
+  max-width: 500px;
+}
+
+/* Text Content */
+.text-container {
+  width: 50%;
+  text-align: left;
+}
+
+.text-container h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.text-container p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #a0aec0;
+}
+
+.signin-button {
+  background-color: #4299e1;
+  width: 25%;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  main {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .main-image {
+    width: 100%;
+    order: 1;
+  }
+
+  .text-container {
+    width: 90%;
+    text-align: center;
+    order: 1;
+  }
+
+  .hamburger {
+    display: block;
+    padding-left: 250px;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #2d3748;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+  .signin-button {
+    background-color: #4299e1;
+    width: 35%;
+    border: none;
+    color: white;}
+}
