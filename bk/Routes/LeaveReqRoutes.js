@@ -13,5 +13,4 @@ router.patch("/leaverequest/:rollNo", identifer(["staff" , "hod"]), LeaveControl
 // For students to view their own leave requests:
 router.get("/leaveRequest/student", identifer(['student']), LeaveController.getStudentLeaveRequests);
 
-
 module.exports = router;

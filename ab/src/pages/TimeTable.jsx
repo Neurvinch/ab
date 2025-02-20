@@ -16,7 +16,7 @@ const TimeTable = () => {
           withCredentials : true
         }
       )
-       
+      
       if(res.data.success){
  setTimeTable(res.data.timeTable);
       }else{
