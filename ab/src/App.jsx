@@ -8,6 +8,8 @@ import Profile from './pages/Profile.jsx'
 import StudentLeaveRequest from './pages/StudentLeaveRequest.jsx'
 import LeaveApproval from './pages/LeaveApproval.jsx'
 import StudentLeaveStatus from './pages/StudentLeaveStatus.jsx'
+import InternalMarkUpload from './pages/InternalMarkUpload.jsx'
+import StudentInternalMarks from './pages/StudentInternalMarks.jsx'
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
       <Route  path='/leaveRequest' element = {<StudentLeaveRequest/>}  />
       <Route  path='/leaveRequestAdmin' element = {<LeaveApproval/>}  />
       <Route  path='/leaveStatus'  element = {<StudentLeaveStatus/>}       />
+      <Route  path='/uploadMarks' element = { <InternalMarkUpload/>}   />
+      <Route  path='/MarksView' element = { <StudentInternalMarks/>}   />
   </Routes>
     </Router>
 

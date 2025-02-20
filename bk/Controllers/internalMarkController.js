@@ -1,4 +1,4 @@
-const InternalMark = require("../Models/InternalMark");
+const InternalMark = require("../Models/internalMarkSchema");
 
 // Students view their internal marks
 exports.getInternalMarks = async (req, res) => {

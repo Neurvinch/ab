@@ -7,6 +7,6 @@ const { identifer } = require("../Midddleware/identifer");
 router.get("/internal-marks/student", identifer(['student']), internalMarkController.getInternalMarks);
 
 // Staff: Upload internal marks
-router.post("/internal-marks/upload", identifer(['staff']), internalMarkController.uploadInternalMarks);
+router.post("/internal-marks/upload", identifer(['staff',"hod"]), internalMarkController.uploadInternalMarks);
 
 module.exports = router;
