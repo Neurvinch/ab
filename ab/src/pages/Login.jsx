@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './LoginPage.css';
+import loginImage from '../assets/highsc1.png';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -37,40 +39,49 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        
-        <input
-          type="number"
-          value={formData.rollNo}
-          placeholder="Roll No"
-          onChange={(e) => setFormData({ ...formData, rollNo: e.target.value })}
-          required
-        />
-        <input
-          type="password"
-          value={formData.password}
-          placeholder="Password"
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-          required
-        />
-        <select
-          value={formData.roles}
-          onChange={(e) => setFormData({ ...formData, roles: e.target.value })}
-          required
-        >
-          <option value="student">Student</option>
-          <option value="staff">Staff</option>
-          <option value="hod">HOD</option>
-        </select>
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Don't have an account? <a href="/signup">Signup</a>
-      </p>
-    </div>
+    <div className="login-container">
+            {/* Left Side - Image */}
+            <div className="image-section">
+                <img src={loginImage} alt="Login" />
+            </div>
+
+            {/* Right Side - Form */}
+            <div className="form-section">
+                <h2>Login</h2>
+                {error && <div className="error-message">{error}</div>}
+
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="number"
+                        value={formData.rollNo}
+                        placeholder="Roll No"
+                        onChange={(e) => setFormData({ ...formData, rollNo: e.target.value })}
+                        required
+                    />
+                    <input
+                        type="password"
+                        value={formData.password}
+                        placeholder="Password"
+                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                        required
+                    />
+                    <select
+                        value={formData.roles}
+                        onChange={(e) => setFormData({ ...formData, roles: e.target.value })}
+                        required
+                    >
+                        <option value="student">Student</option>
+                        <option value="staff">Staff</option>
+                        <option value="hod">HOD</option>
+                    </select>
+                    <button type="submit">Login</button>
+                </form>
+
+                <p>
+                    Dont have an account? <a href="/signup">Signup</a>
+                </p>
+            </div>
+        </div>
   );
 };
 
