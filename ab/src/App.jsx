@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import Register from './pages/register.jsx'
 import Login from './pages/Login.jsx'
@@ -16,14 +16,17 @@ import HomePage from './pages/HomePage.jsx'
 import Navbar from './pages/Navbar.jsx'
 
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const hideNavBarRoutes = ['/login', '/signup' , '/'];
  
 
   return (
 
     <>
-    <Router>
-      <Navbar/>
+    
+      {!hideNavBarRoutes.includes(location.pathname) && <Navbar/>}
+      
   <Routes>
     <Route  path='/' element={<HomePage/>}    />
       <Route  path='/signup' element={<Register/> }  />
@@ -39,10 +42,18 @@ function App() {
        <Route  path='/AnnoucementsCreation' element ={<AnnouncementCreation/> }  />
         <Route  path='/Annoucements' element = { <FetchAnnoucements/>} />
   </Routes>
-    </Router>
+ 
 
     </>
      
+  )
+}
+
+function   App (){
+  return (
+    <Router>
+<AppContent/>
+    </Router>
   )
 }
 
