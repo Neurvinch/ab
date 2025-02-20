@@ -1,0 +1,127 @@
+/* Container */
+.signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    background-color: #1a202c;
+    color: white;
+    padding: 40px;
+    gap: 50px;
+   
+}
+
+/* Left Side - Image */
+.image-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* Right Side - Form */
+.form-section {
+    width: 40%;
+    text-align: left;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* Form Heading */
+.form-section h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.form-section p {
+    font-size: 16px;
+    color: #a0aec0;
+    margin-bottom: 20px;
+}
+
+/* Error & Success Messages */
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #4a5568;
+    color: white;
+}
+
+form select {
+    cursor: pointer;
+}
+
+/* Submit Button */
+.buttonn {
+    width: 30%;
+   
+    padding: 12px;
+    background-color: #4299e1;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+}
+
+.buttonn:hover {
+    background-color: #3182ce;
+}
+
+/* Login Link */
+.form-section a {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-section a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .signup-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .image-section {
+        width: 100%;
+        order: 2;
+    }
+
+    .form-section {
+        width: 100%;
+        order: 1;
+    }
+
+    form input, form select, button {
+        font-size: 16px;
+    }
+}
