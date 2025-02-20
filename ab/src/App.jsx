@@ -13,6 +13,7 @@ import StudentInternalMarks from './pages/StudentInternalMarks.jsx'
 import AnnouncementCreation from './pages/HodAnnoucements.jsx'
 import FetchAnnoucements from './pages/FetchAnnoucements.jsx'
 import HomePage from './pages/HomePage.jsx'
+import Navbar from './pages/Navbar.jsx'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
     <>
     <Router>
+      <Navbar/>
   <Routes>
     <Route  path='/' element={<HomePage/>}    />
       <Route  path='/signup' element={<Register/> }  />
