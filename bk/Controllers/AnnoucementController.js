@@ -20,7 +20,7 @@ exports.createAnnouncements = async (req,res) =>{
         const annoucement = new AnnouncemeentModel({
             title,
             content,
-            postedBy: req.user._id
+            postedBy: req.user && req.user.userId
         });
         await annoucement.save();
         res.status(201).json({success: true, message: "Announcement created successfully"})

@@ -10,6 +10,8 @@ import LeaveApproval from './pages/LeaveApproval.jsx'
 import StudentLeaveStatus from './pages/StudentLeaveStatus.jsx'
 import InternalMarkUpload from './pages/InternalMarkUpload.jsx'
 import StudentInternalMarks from './pages/StudentInternalMarks.jsx'
+import AnnouncementCreation from './pages/HodAnnoucements.jsx'
+import FetchAnnoucements from './pages/FetchAnnoucements.jsx'
 
 
 function App() {
@@ -29,7 +31,9 @@ function App() {
       <Route  path='/leaveRequestAdmin' element = {<LeaveApproval/>}  />
       <Route  path='/leaveStatus'  element = {<StudentLeaveStatus/>}       />
       <Route  path='/uploadMarks' element = { <InternalMarkUpload/>}   />
-      <Route  path='/MarksView' element = { <StudentInternalMarks/>}   />
+      <Route  path='/MarksView' element = { <StudentInternalMarks/>} />
+       <Route  path='/AnnoucementsCreation' element ={<AnnouncementCreation/> }  />
+        <Route  path='/Annoucements' element = { <FetchAnnoucements/>} />
   </Routes>
     </Router>
 

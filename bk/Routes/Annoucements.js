@@ -3,8 +3,8 @@ const router = express.Router();
 const { identifer } = require("../Midddleware/identifer");
 const { getAnnouncements, createAnnouncements } = require('../Controllers/AnnoucementController');
 
-router.get("/annoucements" , identifer(['student', 'staff']) , getAnnouncements  )
+router.get("/announcements" , identifer(['student', 'staff']) , getAnnouncements  )
 
-router.post("/annoucements", identifer(['hod'] ) , createAnnouncements);
+router.post("/annoucementsadmin", identifer(['hod'] ) , createAnnouncements);
 
 module.exports = router;
