@@ -34,6 +34,8 @@ const Navbar = () => {
           <Link to="/leaveRequest" style={styles.link}>Leave/OD Request</Link>
         </>
       );
+
+           ///
     } else if (role === 'staff') {
       return (
         <>
