@@ -6,6 +6,7 @@ const ttRoutes = require("./Routes/timetable");
 const profile = require("./Routes/ProfileRoutes")
 const LR = require("./Routes/LeaveReqRoutes")
 const intMarks = require("./Routes/internalMarkRoutes")
+const ann = require("./Routes/Annoucements");
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -21,7 +22,7 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use('/api', authRoutes, atdRoutes,ttRoutes , profile , LR,intMarks);
+app.use('/api', authRoutes, atdRoutes,ttRoutes , profile , LR,intMarks, ann);
 
 mongoose.connect('mongodb+srv://naveen:95144@cluster0.ij3t1.mongodb.net/')
   .then(() => {
