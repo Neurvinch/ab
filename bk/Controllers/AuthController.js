@@ -210,10 +210,82 @@ exports.verifyVerificationCode = async(req,res) =>{
          }
 
          if(Date.now() - existingUser.verificationCodeValidation > 5* 60 * 10000){
-            
+             return res.status(400).json({
+                success : false,
+                message : "Verification code expired"
+            })
          }
+          const hashedCodeValue = hmacProcess(
+            codeValue,
+            process.env.HMAC_KEY
+
+          )
+
+          if(hashedCodeValue  === existingUser.verificationCode){
+            existingUser.verified = true;
+            existingUser.verificationCode = undefined;
+            existingUser.verificationCodeValidation = undefined;
+            await existingUser.save();
+            return res.status(200).json({
+                success : true,
+                message : "User verified successfully"
+            })
+          }
+           
+    } catch (error) {
+         console.error(error);
+         return res.status(500).json({
+            success : false,
+            message : "Internal server error"
+            })
+            
+    }
+}
+
+
+exports.changePassword =async (req,res) =>{
+    const {rollNo , verified } = req.user;
+    const [oldPassword , newPassword] = req.body;
+    try {
+        if(!verified){
+            return res.status(400).json({
+                success : false,
+                message : "User not verified"
+            })
+        }
+
+        const existingUser = await userModel.findOne({rollNo}).select("+password");
+        if(!existingUser){
+            return res.status(404).json({
+                success : false,
+                message : "User not found"
+            })
+        }
+
+        const result = await doHashValidation(oldPassword , existingUser.password);
+
+        if(!result){
+            return res.status(400).json({
+                success : false,
+                message : "Invalid old password"
+            })
+        }
+
+        const hashedpassword = await doHash(newPassword, 12);
+        existingUser.password = hashedpassword;
+        await existingUser.save();
+        return res.status(200).json({
+            success : true,
+            message : "Password changed successfully"
+        })
+
+
         
     } catch (error) {
-        
+        console.error(error);
+        return res.status(500).json({
+            success : false,
+            message : "Internal server error"
+            })
     }
 }
