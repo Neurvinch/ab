@@ -41,11 +41,28 @@ const userSchema = new mongoose.Schema({
             type : mongoose.Schema.Types.ObjectId,
             ref : 'TimetableModel'
         }
-    ] 
+    ] ,
+    verified:{
+        type: Boolean,
+        default:false,
+    },
+    verificationCode : {
+        type: String,
+        select : false,
+    },
+    verificationCodeValidation:{
+        type: Number,
+        select : false,
+    },
+    forgotPasswordCode : {
+        type: String,
+        select : false,
+    },
+    forgotPasswordCodeValidation : {
+        type: Number,
+        select : false,
+    }
     
-
-
-
 
 },{
     timestamps : true,
