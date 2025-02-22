@@ -23,7 +23,7 @@ exports.submitRequest = async (req, res) => {
 
 exports.getLeaveRequests = async (req, res) => {
     try {
-      // Fetch all leave requests and populate student info if needed.
+
       const requests = await LeaveRequestModel.find().populate("studentId", "rollNo email");
       if (!requests || requests.length === 0) {
         return res.status(404).json({
@@ -31,7 +31,6 @@ exports.getLeaveRequests = async (req, res) => {
           message: "No leave requests found"
         });
       }
-      // Return the fetched requests in the response under the "data" property.
       res.status(200).json({
         success: true,
         data: requests
@@ -52,7 +51,7 @@ exports.getLeaveRequests = async (req, res) => {
       return res.status(400).json({ success: false, message: "Status is required" });
     }
     
-    // Normalize status to lowercase
+   
     status = status.toLowerCase();
     
     if (!["approved", "rejected"].includes(status)) {
@@ -60,7 +59,7 @@ exports.getLeaveRequests = async (req, res) => {
     }
     
     try {
-      // Use rollNo from the route parameters to find and update the leave request
+     
       const request = await LeaveRequestModel.findOneAndUpdate(
         { rollNo: req.params.rollNo },
         { status, updatedAt: Date.now() },
@@ -78,10 +77,9 @@ exports.getLeaveRequests = async (req, res) => {
     }
   };
 
-  // In your leaveRequestController.js
+ 
 exports.getStudentLeaveRequests = async (req, res) => {
     try {
-      // Assuming req.user.rollNo is set by your authentication middleware
       const requests = await LeaveRequestModel.find({ rollNo: req.user.rollNo });
       if (!requests || requests.length === 0) {
         return res.status(404).json({ success: false, message: "No leave requests found" });
